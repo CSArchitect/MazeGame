@@ -54,6 +54,11 @@ public class CameraFollow : MonoBehaviour
         focusPosition += Vector2.right * currentLookAheadX;
         transform.position = (Vector3)focusPosition + Vector3.forward * -10;
     }
+    public void setTarget(Controller2D followThis)
+    {
+        target = followThis;
+        focusArea = new FocusArea(target.coll.bounds, focusAreaSize);
+    }
 
     private void OnDrawGizmos()
     {

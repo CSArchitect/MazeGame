@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -21,10 +22,16 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LateStart(1));
+    }
+
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
         focusArea = new FocusArea(target.coll.bounds, focusAreaSize);
     }
 
-    private void LateUpdate()
+private void LateUpdate()
     {
         focusArea.Update(target.coll.bounds);
 
